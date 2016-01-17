@@ -51,6 +51,8 @@ function gulpCssBase64(opts) {
         function () {
           result = rCSSImages.exec(src);
           if (result === null) {
+            // SVGs must have ALL external resources base64 encoded
+            opts.maxWeightResource = Infinity;
             result = rSVGImages.exec(src);
           }
           return result !== null;
